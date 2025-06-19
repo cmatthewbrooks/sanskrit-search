@@ -44,18 +44,20 @@ echo "Found $DOC_COUNT .doc files and $DOCX_COUNT .docx files."
 echo "Processing files..."
 echo "-----------------------------------"
 
-# Process .doc and .docx files
+# Process each .doc and .docx file found
 find "$DIRECTORY" \( -name "*.doc" -o -name "*.docx" \) | while IFS= read -r file; do
     echo "Processing: $file"
     
+    # Extract text from .doc using antiword and convert encoding to UTF-8
     if [[ "$file" == *.doc ]]; then
         TEXT=$(antiword "$file" 2>/dev/null | iconv -f ISO-8859-1 -t UTF-8)
+    # Extract text from .docx using docx2txt
     elif [[ "$file" == *.docx ]]; then
         TEXT=$(./docx2txt "$file" "-" 2>/dev/null)
     fi
 
     if [[ -n "$TEXT" ]]; then
-        # Search for the string and print the surrounding context if found
+        # Search for the string using ggrep with Perl regex (-P), case-insensitive (-i), and 2 lines of context (-C 2)
         MATCHES=$(echo "$TEXT" | ggrep -i -C 2 --color=always -P "$SEARCH_STRING")
         if [[ -n "$MATCHES" ]]; then
             echo "$MATCHES"
