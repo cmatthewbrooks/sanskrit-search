@@ -9,6 +9,7 @@ This is a Sanskrit text search tool that recursively searches through `.doc` and
 ## Core Architecture
 
 - **Main Script**: `sanskrit_search.sh` - Shell script that orchestrates the entire search process
+- `Nīti Texts/`: large collection of Sanskrit texts to use for searching
 - **Text Extraction**: Uses two external tools for document processing:
   - `antiword` for .doc files (must be installed via Homebrew)
   - `docx2txt` for .docx files (included as a Perl script in the repository)
@@ -41,15 +42,6 @@ Examples:
   - .docx files: `docx2txt` direct extraction
 - **Search**: `ggrep -i -C 2 --color=always -P` for case-insensitive Perl regex with 2 lines of context
 - **File Discovery**: Uses `find` to locate all .doc and .docx files recursively
-
-## Data Structure
-
-The repository includes a large collection of Sanskrit texts in the `Nīti Texts/` directory:
-- Mahābhārata texts (18 files)
-- Rāmāyaṇa texts (7 files) 
-- Nītiśāstras (various treatises)
-- Aśvaghoṣa works
-- Dharmasūtras and Dharmaśāstras
 
 ## Development Notes
 
