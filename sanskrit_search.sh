@@ -18,6 +18,26 @@ MATCH_COUNT=0
 DOC_COUNT=0
 DOCX_COUNT=0
 
+# Function to convert wildcard pattern to regex
+# Converts * to match any characters within a word (non-whitespace characters)
+# while escaping other regex special characters
+convert_wildcard_to_regex() {
+    local pattern="$1"
+    # Escape regex special characters except *
+    pattern=$(echo "$pattern" | sed 's/[[\\.^$()+{}|]/\\&/g')
+    # Convert * to [^\s]* to match non-whitespace characters (single word)
+    pattern=$(echo "$pattern" | sed 's/\*/[^\\s]*/g')
+    echo "$pattern"
+}
+
+# Convert search string to regex pattern if it contains wildcards
+if [[ "$SEARCH_STRING" == *"*"* ]]; then
+    REGEX_PATTERN=$(convert_wildcard_to_regex "$SEARCH_STRING")
+    echo "Wildcard pattern detected. Converting '$SEARCH_STRING' to regex: '$REGEX_PATTERN'"
+else
+    REGEX_PATTERN="$SEARCH_STRING"
+fi
+
 # Verify if the provided directory exists
 if [ ! -d "$DIRECTORY" ]; then
     echo "Error: Directory '$DIRECTORY' does not exist."
@@ -58,7 +78,7 @@ find "$DIRECTORY" \( -name "*.doc" -o -name "*.docx" \) | while IFS= read -r fil
 
     if [[ -n "$TEXT" ]]; then
         # Search for the string using ggrep with Perl regex (-P), case-insensitive (-i), and 2 lines of context (-C 2)
-        MATCHES=$(echo "$TEXT" | ggrep -i -C 2 --color=always -P "$SEARCH_STRING")
+        MATCHES=$(echo "$TEXT" | ggrep -i -C 2 --color=always -P "$REGEX_PATTERN")
         if [[ -n "$MATCHES" ]]; then
             echo "$MATCHES"
             echo "File: $file"
