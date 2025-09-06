@@ -93,4 +93,19 @@ ataḥ paraṃ sutrārthaṃ vartayiṣyāmaḥ |
 
  [1]svāmī svāmyanugo [2]'mātyo [3]rāṣṭraṃ ca snigdhasajjanam |
  ...
+
+ # Lastly, you can search multiple terms within a specified line count.
+ # In this example, we search "ari" and "mitr" within 3 lines of each other.
+ # Note: you can still search characters from the extended keyboard as well as wildcards.
+> ./sanskrit_search.sh Nīti\ Texts 3 ari mitr
+ ...
+Processing: Nīti Texts/Rāmāyaṇa/Rāmāyaṇa 4.docx
+
+
+4.001.001a sa tāṃ puṣkariṇīṃ gatvā padmotpalajhaṣākulām
+4.001.001c rāmaḥ saumitrisahito vilalāpākulendriyaḥ
+4.001.002a tasya dṛṣṭvaiva tāṃ harṣād indriyāṇi cakampire
+4.001.002c sa kāmavaśam āpannaḥ saumitrim idam abravīt
+File: Nīti Texts/Rāmāyaṇa/Rāmāyaṇa 4.docx
+ ...
 ```
