@@ -55,7 +55,7 @@ the most useful.
 Usage: ./sanskrit_search.sh <directory_path> <search_string>
 
 # Search plain-text
-> ./sanskrit_search.sh ~/Downloads/Nīti\ Texts zatr
+> ./sanskrit_search.sh Nīti\ Texts zatr
 ...
 -----------------------------------
 Processing: /Users/cmb/Downloads/Nīti Texts/Mahābhārata/17 mahaaprasthaanika.docx
@@ -69,7 +69,7 @@ File: /Users/cmb/Downloads/Nīti Texts/Mahābhārata/17 mahaaprasthaanika.docx
 ...
 
 # Or search using characters from the extended keyboard:
-> ./sanskrit_search.sh ~/Downloads/Niti\ Texts śatr
+> ./sanskrit_search.sh Niti\ Texts śatr
 ...
 -----------------------------------
 Processing: /Users/cmb/Downloads/Nīti Texts/Nītiśāstras/Nītisāra of Kāmandaki.docx
@@ -81,4 +81,16 @@ Processing: /Users/cmb/Downloads/Nīti Texts/Nītiśāstras/Nītisāra of K
 
 --
 ...
+
+# You can also search wildcards within a single word using the "*" character.
+# Note: When searching a wildcard, you should enclose the search term in quotes.
+> ./sanskrit_search.sh Niti\ Texts "daṇḍa*mitr"
+...
+Processing: Nīti Texts/Nītiśāstras/cākṣuṣīya transcription final.docx
+ataḥ paraṃ sutrārthaṃ vartayiṣyāmaḥ |
+
+[1] sapta prakṛtaya iti -- tadyathā -- [1]svāmy[2]amātya[3]janapada[4]durga[5]kośa[6]daṇḍa[7]mitrāṇi | atra ślokau --
+
+ [1]svāmī svāmyanugo [2]'mātyo [3]rāṣṭraṃ ca snigdhasajjanam |
+ ...
 ```
