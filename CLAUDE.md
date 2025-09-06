@@ -49,3 +49,10 @@ Examples:
 - Output includes file counts, processing status, and match summaries
 - Uses colored output for better terminal readability
 - Designed to run from the repository directory to access the bundled `docx2txt` script
+
+## Testing
+
+- Single term: `./sanskrit_search.sh Nīti\ Texts zatr`
+- Extended characters: `./sanskrit_search.sh Niti\ Texts śatr`
+- Wildcard: `./sanskrit_search.sh Niti\ Texts "daṇḍa*mitr"`
+- Multi-term: `./sanskrit_search.sh Nīti\ Texts 3 ari mitr`
